@@ -107,10 +107,10 @@ Below is a detailed written description of the entire process, simulating what w
    - The deployed model endpoint is fully functional and capable of receiving HTTP requests. It processes incoming data in JSON format and returns predictions in real-time. For example, when sending a sample payload with customer data (e.g., age, job, marital status), the endpoint responds with a prediction indicating whether the customer is likely to subscribe to a term deposit.
 
 2. **Deployed Pipeline**:
-   - The deployed pipeline automates the entire machine learning workflow, from data ingestion and preprocessing to model training and deployment. The pipeline is triggered automatically whenever new data is available, ensuring that the model is always up-to-date. The screencast would demonstrate the pipeline's execution, showing each step being completed successfully.
+   - The deployed pipeline automates the entire machine learning workflow, from data ingestion and preprocessing to model training and deployment. The pipeline is triggered automatically whenever new data is available, ensuring that the model is always up-to-date. You can see all this proccess in the notebook.
 
 3. **Available AutoML Model**:
-   - The AutoML experiment identified the best-performing model based on predefined metrics (e.g., accuracy, AUC). The selected model is displayed in the Azure Machine Learning Studio, along with its performance metrics and training details. This section would highlight how AutoML evaluated multiple algorithms and hyperparameters to choose the optimal model.
+   - The AutoML experiment identified the best-performing model based on predefined metrics (e.g., accuracy, AUC). The selected model (see in Diagram components in 3. **Deploy the Best Model**) is displayed in the Azure Machine Learning Studio, along with its performance metrics and training details. This section would highlight how AutoML evaluated multiple algorithms and hyperparameters to choose the optimal model.
 
 4. **Successful API Requests to the Endpoint with a JSON Payload**:
    - The process of sending API requests to the deployed endpoint is demonstrated using the `endpoint.py` script. A sample JSON payload is sent to the endpoint directly via Python code. The `POST` request to the API returns the prediction results, as shown in the image below.
