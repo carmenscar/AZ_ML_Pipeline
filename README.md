@@ -75,6 +75,11 @@ Below is an architectural diagram that illustrates the different components of t
      ![serve.py Bug](images/serve.py.png)
      ![serve.py Error](images/serve-error.png)
 
+   ### Benchmark Testing:
+   - I conducted benchmark testing to evaluate the pipeline's performance. This involved sending multiple requests to the endpoint and measuring response times, accuracy, and resource usage.
+   - Below are images showing the benchmark results, including response times and prediction accuracy. These results demonstrate the pipeline's efficiency and the model's ability to handle real-time requests.
+     ![Apache Bench](images/apache_benchmarking_runned.png)
+
 6. **Create and Publish a Pipeline**:
    - I created and published a pipeline to automate the entire machine learning workflow in the `aml-pipelines-with-automated-machine-learning-step.ipynb`. This pipeline ensures that the process is efficient, reproducible, and scalable. Below are images showing the **created pipeline** and the **pipeline endpoint** in Azure ML Studio:
      ![Created Pipeline](images/pipelines.png)
@@ -91,11 +96,6 @@ Below is an architectural diagram that illustrates the different components of t
    - During the project, I encountered an issue where the widgets used in the notebook were **deprecated** and could not be executed. This prevented me from visualizing certain outputs directly within the notebook. Below is an image showing the deprecated widget error:
      ![Deprecated Widget](images/deprecated_widgets.png)
    - A key area for improvement is to investigate and resolve this issue, either by updating the code to use supported widgets or by finding alternative visualization methods. This would ensure a smoother workflow and better user experience in future iterations of the project.
-
-   ### Benchmark Testing:
-   - I conducted benchmark testing to evaluate the pipeline's performance. This involved sending multiple requests to the endpoint and measuring response times, accuracy, and resource usage.
-   - Below are images showing the benchmark results, including response times and prediction accuracy. These results demonstrate the pipeline's efficiency and the model's ability to handle real-time requests.
-     ![Apache Bench](images/apache_benchmarking_runned.png)
 
 ---
 
