@@ -45,21 +45,24 @@ Below is an architectural diagram that illustrates the different components of t
    - To run the AutoML experiment, I first registered a dataset provided by the course, which is available at the following URL: [Bank Marketing Dataset](https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv).
    - After registering the dataset, I used it to train the model on a pre-configured compute instance in Azure Machine Learning Studio.
    - The dataset was successfully uploaded to Azure ML Studio, and the AutoML experiment was executed. Below are images showing the dataset in Azure ML Studio and the completed AutoML run.
+  
+     
     ![Registered Dataset](images/registered_datasets.png)
+   
     ![Completed Experiment](images/job_completed.png)
 
-3. **Deploy the Best Model**:
+4. **Deploy the Best Model**:
    - Deployed the best-performing model as a REST endpoint using Azure Machine Learning. This allowed me to make predictions by sending HTTP requests to the endpoint. In this scenario we have VontingEnsemble for the best model as showed in the image below.
     ![best_model](images/best_model_completed.png)
 
-4. **Enable Logging**:
+5. **Enable Logging**:
    - To monitor the deployed model’s performance and usage, I enabled **Application Insights** for logging. This was done by running the `logs.py` script, which retrieves logs from the deployed web service.
    - Application Insights provides detailed telemetry data, including request/response times, error rates, and custom logs, making it easier to troubleshoot issues and ensure the model is functioning correctly.
    - Below is an image showing **Application Insights** enabled for the deployed model, displaying real-time monitoring data and logs and the logs that where genarated running logs.py
    ![Application Insights](images/Applications_Insights.png)
    ![Logs](images/logs.png)
 
-5. **Consume Endpoints**:
+6. **Consume Endpoints**:
    - In this step, I consumed the deployed model’s REST endpoint to make predictions. This involved sending sample data to the endpoint and receiving predictions in real-time. To interact with the endpoint, I used **Swagger**, which provides an interactive interface for testing the API.
 
    ### Using Swagger:
@@ -74,7 +77,7 @@ Below is an architectural diagram that illustrates the different components of t
   ![serve.py bug](images/serve.py.png)
   ![serve.py bug](images/serve-error.png)
   
-6. **Create and Publish a Pipeline**:
+7. **Create and Publish a Pipeline**:
    - I created and published a pipeline to automate the entire machine learning workflow. This pipeline ensures that the process is efficient, reproducible, and scalable.
    - After deploying the model, I used the `endpoint.py` script to interact with the trained model. To do this, I updated the `scoring_uri` and `key` variables in the script to match the endpoint URI and authentication key generated after deployment.
    - The `endpoint.py` script sends a sample JSON payload to the deployed model and retrieves predictions in real-time. This step was crucial for testing the model's performance and ensuring that the endpoint was functioning correctly.
