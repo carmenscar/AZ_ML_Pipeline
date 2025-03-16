@@ -138,13 +138,9 @@ This project provided a comprehensive hands-on experience in deploying and consu
 - **Real-Time Monitoring**: Implement real-time monitoring and alerting for the deployed model.
 - **Scalability**: Use **Azure Kubernetes Service (AKS)** to handle higher traffic and improve scalability.
 
-This project not only deepened my understanding of Azure Machine Learning but also provided valuable insights into building and deploying machine learning models in a production environment. I look forward to applying these skills to future projects and exploring more advanced features of Azure ML.
-
 ---
-
-Feel free to explore the code, screenshots, and documentation to see the project in action! 🚀
 
 This project allowed me to gain hands-on experience with **Azure Machine Learning**, from training models using AutoML to deploying and consuming them via REST endpoints. I also learned how to create and publish pipelines to automate workflows. By documenting my work in this README file, I hope to provide a clear and comprehensive overview of the project.
 
-Feel free to explore the code, screenshots, and video to see the project in action! 🚀
+Feel free to explore the code and  screenshots to see the project in action! 🚀
 
