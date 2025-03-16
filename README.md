@@ -43,9 +43,9 @@ Below is an architectural diagram that illustrates the different components of t
 2. **AutoML**:
    - I used **Azure AutoML** to train and evaluate multiple machine learning models. The experiment was run in two ways: through a **Jupyter Notebook** and **manually via the terminal**.
    - To run the AutoML experiment manually, I first registered a dataset provided by the course, which is available at the following URL: [Bank Marketing Dataset](https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv).
-   - After registering the dataset, I used it to train the model on a pre-configured compute instance in Azure Machine Learning Studio.
-   - The dataset was successfully uploaded to Azure ML Studio, and the AutoML experiment was executed. Below are images showing the dataset in Azure ML Studio and the completed AutoML run.
+   - The dataset was successfully uploaded to Azure ML Studio, and the AutoML experiment was executed. 
      ![Registered Dataset](images/registered_datasets.png)
+   -  After registering the dataset, I used it to train the model on a pre-configured compute instance in Azure Machine Learning Studio:
      ![Completed Experiment](images/job_completed.png)
    - To run the AutoML experiment within a pipeline via the notebook, we first attempt to load the dataset from the Azure ML Workspace. If the dataset is not found, it is created and registered using the provided link to the Bank Marketing dataset.
 
