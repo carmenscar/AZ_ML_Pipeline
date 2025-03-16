@@ -41,23 +41,73 @@ Below is an architectural diagram that illustrates the different components of t
    ![Authentication Code Example](images/no-permission-to-rbac.png)
 
 2. **AutoML**:
-   - Used Azure AutoML to train and evaluate multiple models. I ran the experiment both in a **Jupyter Notebook** and **manually via the terminal**.
+   - I used **Azure AutoML** to train and evaluate multiple machine learning models. The experiment was run in two ways: through a **Jupyter Notebook** and **manually via the terminal**.
+   - To run the AutoML experiment, I first registered a dataset provided by the course, which is available at the following URL: [Bank Marketing Dataset](https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv).
+   - After registering the dataset, I used it to train the model on a pre-configured compute instance in Azure Machine Learning Studio.
+   - The dataset was successfully uploaded to Azure ML Studio, and the AutoML experiment was executed. Below are images showing the dataset in Azure ML Studio and the completed AutoML run.
+    ![Registered Dataset](images/registered_datasets.png)
+    ![Completed Experiment](images/job_completed.png)
 
 3. **Deploy the Best Model**:
    - Deployed the best-performing model as a REST endpoint using Azure Machine Learning. This allowed me to make predictions by sending HTTP requests to the endpoint. In this scenario we have VontingEnsemble for the best model as showed in the image below.
     ![best_model](images/best_model_completed.png)
 
 4. **Enable Logging**:
-   - Enabled logging to monitor the deployed model’s performance and usage. I retrieved and analyzed logs to ensure the model was functioning correctly and to troubleshoot any issues.
+   - To monitor the deployed model’s performance and usage, I enabled **Application Insights** for logging. This was done by running the `logs.py` script, which retrieves logs from the deployed web service.
+   - Application Insights provides detailed telemetry data, including request/response times, error rates, and custom logs, making it easier to troubleshoot issues and ensure the model is functioning correctly.
+   - Below is an image showing **Application Insights** enabled for the deployed model, displaying real-time monitoring data and logs and the logs that where genarated running logs.py
+   ![Application Insights](images/Applications_Insights.png)
+   ![Logs](images/logs.png)
 
 5. **Consume Endpoints**:
-   - Consumed the deployed model’s REST endpoint to make predictions. I sent sample data to the endpoint and received predictions in real-time.
+   - In this step, I consumed the deployed model’s REST endpoint to make predictions. This involved sending sample data to the endpoint and receiving predictions in real-time. To interact with the endpoint, I used **Swagger**, which provides an interactive interface for testing the API.
 
+   ### Using Swagger:
+   - Azure automatically generates a **Swagger JSON file** for deployed models. To access it, I navigated to the **Endpoints** section in Azure Machine Learning Studio and located the deployed model. The Swagger JSON file was available for download from there.
+   - To run Swagger locally, I used the `swagger.sh` script, which downloads the latest Swagger container and runs it on port 80. If port 80 is unavailable (due to permission issues), the script can be updated to use a higher port number (e.g., above 9000).
+
+   ### Testing the Endpoint:
+   - With Swagger UI running, I was able to send sample data to the deployed model’s endpoint and receive predictions in real-time. This step ensured that the endpoint was functioning as expected and that the model could handle incoming requests.
+
+   ### Challenges:
+   - I successfully connected Swagger to the localhost to test the REST endpoint. However, I encountered issues when trying to run the `serve.py` script, which was supposed to serve the `swagger.json` file. Despite debugging, the script did not show the expected HTTP connection, as shown in the images below. This is a point for future improvement.
+  ![serve.py bug](images/serve.py.png)
+  ![serve.py bug](images/serve-error.png)
+  
 6. **Create and Publish a Pipeline**:
-   - Created and published a pipeline to automate the entire workflow, from data preprocessing to model deployment. This made the process efficient and reproducible.
+   - I created and published a pipeline to automate the entire machine learning workflow. This pipeline ensures that the process is efficient, reproducible, and scalable.
+   - After deploying the model, I used the `endpoint.py` script to interact with the trained model. To do this, I updated the `scoring_uri` and `key` variables in the script to match the endpoint URI and authentication key generated after deployment.
+   - The `endpoint.py` script sends a sample JSON payload to the deployed model and retrieves predictions in real-time. This step was crucial for testing the model's performance and ensuring that the endpoint was functioning correctly.
 
-7. **Documentation**:
-   - Documented the entire process, including how to set up the environment, run experiments, deploy models, and consume endpoints. I also included screenshots and a screencast video to demonstrate the workflow.
+   ### Benchmark Testing:
+   - I conducted benchmark testing to evaluate the pipeline's performance. This involved sending multiple requests to the endpoint and measuring response times, accuracy, and resource usage.
+   - Below are images showing the benchmark results, including response times and prediction accuracy. These results demonstrate the pipeline's efficiency and the model's ability to handle real-time requests.
+   ![Apache bench](images/apache_benchmarking_runned.png)
+
+
+---
+
+## Screencast Demonstration (Written Description)
+
+Below is a detailed written description of the entire process, simulating what would be shown in a screencast video:
+
+1. **Working Deployed ML Model Endpoint**:
+   - The deployed model endpoint is fully functional and capable of receiving HTTP requests. It processes incoming data in JSON format and returns predictions in real-time. For example, when sending a sample payload with customer data (e.g., age, job, marital status), the endpoint responds with a prediction indicating whether the customer is likely to subscribe to a term deposit.
+
+2. **Deployed Pipeline**:
+   - The deployed pipeline automates the entire machine learning workflow, from data ingestion and preprocessing to model training and deployment. The pipeline is triggered automatically whenever new data is available, ensuring that the model is always up-to-date. The screencast would demonstrate the pipeline's execution, showing each step being completed successfully.
+
+3. **Available AutoML Model**:
+   - The AutoML experiment identified the best-performing model based on predefined metrics (e.g., accuracy, AUC). The selected model is displayed in the Azure Machine Learning Studio, along with its performance metrics and training details. This section would highlight how AutoML evaluated multiple algorithms and hyperparameters to choose the optimal model.
+
+4. **Successful API Requests to the Endpoint with a JSON Payload**:
+   - The process of sending API requests to the deployed endpoint is demonstrated using the `endpoint.py` script. A sample JSON payload is sent to the endpoint directly via Python code. The `POST` request to the API returns the prediction results, as shown in the image below.
+   - It's important to note that the code in `endpoint.py` required adjustments to work correctly. Specifically, the `data` variable needed to include the key `"Inputs"` to match the expected format of the API. Without this adjustment, the request would fail due to incorrect payload formatting.
+   ![response](images/endpoints_consumining_API.png)
+
+---
+
+This written description provides a comprehensive overview of the project, simulating what would be demonstrated in a screencast video. It ensures that all key components—deployed model, pipeline, AutoML results, and API interactions—are clearly documented and easy to understand.
 
 ---
 
