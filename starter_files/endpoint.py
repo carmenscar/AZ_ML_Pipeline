@@ -8,7 +8,9 @@ scoring_uri = ''
 key = ''
 
 # Two sets of data to score, so we get two results back
-data = {"data":
+data = {
+        "Inputs": {
+                "data":
         [
           {
             "age": 17,
@@ -55,7 +57,7 @@ data = {"data":
             "previous": 1
           },
       ]
-    }
+    }}
 # Convert to JSON string
 input_data = json.dumps(data)
 with open("data.json", "w") as _f:
